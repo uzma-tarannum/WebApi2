@@ -1,52 +1,65 @@
-﻿using WebApi2.Model.Entititees;
+﻿using System.Linq;
+using WebApi2.Model.Entititees;
 
 namespace WebApi2.Model.DAL
 {
     public class ProductService : IProductService
     {
+        DbContextClass _dbContextClass = new DbContextClass();
         public void AddProduct(Product product)
         {
-            throw new NotImplementedException();
+            _dbContextClass.Products.Add(product);
+            _dbContextClass.SaveChanges();
         }
 
         public void DeleteProduct(int id)
         {
-            throw new NotImplementedException();
+            var product = _dbContextClass.Products.Find(id);
+            _dbContextClass.Remove(product);
+            _dbContextClass.SaveChanges();
         }
 
         public List<Product> GetProductBybrand(string brand)
         {
-            throw new NotImplementedException();
+            return (from p in  _dbContextClass.Products 
+                     where p.Brand == brand select p).ToList();
         }
 
         public List<Product> GetProductByCategory(string category)
         {
-            throw new NotImplementedException();
+            return (from p in  _dbContextClass.Products
+                    where p.Category == category select p).ToList();
         }
 
         public Product GetProductById(int id)
         {
-            throw new NotImplementedException();
+            var product = _dbContextClass.Products.Find(id);
+            return product;
         }
 
         public Product GetProductByName(string name)
         {
-            throw new NotImplementedException();
+            var product = _dbContextClass.Products.Find(name);
+            return product;
         }
 
         public List<Product> GetProductByPrice(double price)
         {
-            throw new NotImplementedException();
+            var product = (from p in _dbContextClass.Products
+                           where p.Price== price select p).ToList();
+            return product;
         }
 
         public List<Product> GetProducts()
         {
-            throw new NotImplementedException();
+            var p = _dbContextClass.Products.ToList();
+            return p;
         }
 
         public void UpdateProduct(Product product)
         {
-            throw new NotImplementedException();
+            _dbContextClass.Products.Update(product);
+            _dbContextClass.SaveChanges();
         }
     }
 }

@@ -7,7 +7,7 @@ namespace WebApi2.Model.DAL
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("DataSource=(LocalDB)\\MSSQLLocalDB; Initial Catalog =WebAppDB;Integrated Security=True");
+            optionsBuilder.UseSqlServer("Data Source=(LocalDB)\\MSSQLLocalDB; Initial Catalog =WebAppDB;Integrated Security=True");
         }
 
         public DbSet<Product> Products { get; set; }
