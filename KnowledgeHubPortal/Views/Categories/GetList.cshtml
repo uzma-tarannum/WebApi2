@@ -1,0 +1,33 @@
+﻿@model List<KnowledgeHubPortal.Models.Category>
+
+<form asp-action="">
+    <input type="text" name="search" placeholder="Enter text to serrch" />
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+
+
+<div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Desc</td>
+        <td>Edit</td>
+        </thead>
+        <tbody>
+            @foreach (var items in Model)
+            {
+                <tr>
+                    <td>@items.Id</td>
+                    <td>@items.CategoryName</td>
+                    <td>@items.Description</td>
+                    <td>
+                        <a asp-action="Edit" asp-controller="Categories" asp-route-id="@items.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+</div>
